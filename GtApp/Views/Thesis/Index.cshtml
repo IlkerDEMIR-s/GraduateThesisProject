@@ -1,0 +1,56 @@
+@model List<ThesisViewModel>
+
+<div class="row">
+    <div class="col-md-3">
+        @await Component.InvokeAsync("SubjectTopicMenu")
+    </div>
+    <div class="col-md-9">
+        <div class="text-center">
+            <div class="display-6 my-3 font-weight-bold" style="font-family: 'Arial', sans-serif;">Theses</div>
+            <table class="table table-striped table-hover my-3">
+                <hr class="my-4" style="border: 2px solid blue; border-radius: 5px;">
+                <thead>
+                    <tr>
+                        <th class="font-weight-bold"><i class="fa fa-hashtag"></i>Thesis No</th>
+                        <th class="font-weight-bold">Author</th>
+                        <th class="font-weight-bold">Year</th>
+                        <th class="font-weight-bold">Title</th>
+                        <th class="font-weight-bold">Thesis Type</th>
+                        <th class="font-weight-bold">Subject</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var thesisViewModel in Model)
+                    {
+                        <tr>
+                            <td>@thesisViewModel.Thesis.THESIS_NO</td>
+                            <td>@(thesisViewModel.Author != null ? thesisViewModel.Author.AUTHOR_NAME : "")</td>
+                            <td>@thesisViewModel.Thesis.YEAR</td>
+                            <td>@thesisViewModel.Thesis.TITLE</td>
+                            <td>@thesisViewModel.ThesisType.TYPE_NAME</td>
+                            <td>
+                                @foreach (var subjectTopic in thesisViewModel.SubjectTopics)
+                                {
+                                    <span>@subjectTopic.SUBJECT_TOPIC_CONTENT</span>
+                                    @if (subjectTopic != thesisViewModel.SubjectTopics.Last())
+                                    {
+                                        <hr>
+                                    }
+                                }
+                            </td>
+                            <td>
+                                <div class="btn-group">
+                                                                <a class="btn btn-info btn-sm" asp-action="Get"
+                                asp-route-id="@thesisViewModel.Thesis.THESIS_NO">
+                                <i class="fa-solid fa-arrow-right"></i> Get Details
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+    </div>
+</div>
+

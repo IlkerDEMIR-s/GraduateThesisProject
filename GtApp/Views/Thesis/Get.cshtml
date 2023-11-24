@@ -1,0 +1,76 @@
+@model Entitites.ViewModels.ThesisViewModel
+
+<div>
+    <div class="display-6 my-3 font-weight-bold text-center" style="font-family: 'Arial', sans-serif;">
+        Thesis Details
+    </div>
+    <hr class="my-4" style="border: 2px solid grey; border-radius: 5px;">
+
+    <div class="btn-group">
+        <a class="btn btn-secondary" asp-controller="Home" asp-action="Index">
+            <i class="fa-solid fa-house"></i> Home
+        </a>
+        <a class="btn btn-outline-secondary" asp-controller="Thesis" asp-action="Index">
+            <i class="fa-solid fa-list"></i> Theses
+        </a>
+    </div>
+    <table class="table-bordered table table-hover my-3 table align-middle" style="position: relative;">
+        <thead class="table-secondary">
+            <tr class="font-weight-bold">
+                <th><i class="fa-solid fa-hashtag"></i> Thesis No</th>
+                <th><i class="fa-solid fa-stamp"></i> Thesis Imprint</th>
+                <th><i class="fa-solid fa-circle-info"></i> Thesis Info</th>
+            </tr>
+        </thead>
+        <tbody class="table-group-divider ">
+            <tr>
+                <td>@Model.Thesis.THESIS_NO</td>
+                <td>
+                    <p>@Model.Thesis.TITLE</p>
+                    <p>Author: @Model.Author.AUTHOR_NAME</p>
+                    <p>
+                        Supervisor: @(Model.Supervisor?.SUPERVISOR_NAME ?? "None"),
+                        CoSupervisor: @(Model.CoSupervisor?.SUPERVISOR_NAME ?? "None")
+                    </p>
+                    <p>Where: @Model.University.UNIVERSITY_NAME / @Model.Institute.INSTITUTE_NAME</p>
+                    <p>
+                        Subject Topics:
+                        @foreach (var subjectTopic in Model.SubjectTopics)
+                        {
+                            @subjectTopic.SUBJECT_TOPIC_CONTENT
+                            if (!subjectTopic.Equals(Model.SubjectTopics.Last())) // Check if it's not the last item
+                            {
+                                @:,
+                            }
+                        }
+                    </p>
+                    <p>
+                        Keywords:
+                        @foreach (var keyword in Model.Keywords)
+                        {
+                            @:#@keyword.KEYWORD
+                            if (!keyword.Equals(Model.Keywords.Last())) // Check if it's not the last item
+                            {
+                                @:,
+                            }
+                        }
+                    </p>
+                </td>
+                <td class="text-center">
+                    <p>@Model.ThesisType.TYPE_NAME</p>
+                    <hr>
+                    <p>@Model.Thesis.LANGUAGE</p>
+                    <hr>
+                    <p>@Model.Thesis.YEAR</p>
+                    <hr>
+                    <p>@Model.Thesis.NUM_PAGES p.</p>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3">@Model.Thesis.ABSTRACT</td>
+            </tr>
+        </tfoot>
+    </table>
+</div>

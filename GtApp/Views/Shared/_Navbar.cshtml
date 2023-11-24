@@ -1,0 +1,26 @@
+<nav class="navbar bg-light border-bottom navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <a class="navbar-brand" asp-controller="Home" asp-action="Index">
+            <i class="fa-solid fa-book-open text-danger"></i>
+            <span class="text-danger">Graduate Thesis Center</span></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" asp-controller="Home" asp-action="Index">
+                        <i class="fa-solid fa-house"></i>
+                        Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" asp-controller="Thesis" asp-action="Index">
+                        <i class="fa-solid fa-file-lines"></i>
+                        Theses (@await Component.InvokeAsync("ThesesSummary"))
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,10 @@
+@model Thesis
+
+<div>
+    <h2>@Model.THESIS_NO</h2>
+    <h4>@Model.TITLE</h4>
+    <h6>@Model.ABSTRACT</h6>
+    <a class="btn btn-primary" asp-action="Get" asp-route-id="@Model.THESIS_NO">
+        <i class="fa-solid fa-arrow-right"></i> Get Details</a>
+    <hr /><br>
+</div>
