@@ -12,5 +12,7 @@ namespace Services.Contracts
         IEnumerable<Keyword> GetAllKeywords(bool trackChanges);
         Keyword? GetOneKeyword(int id, bool trackChanges);
         void CreateKeyword(Keyword keyword);
+        void DeleteOneKeyword(int id);
+        void DeleteKeywordsByThesisId(int id);
     }
 }

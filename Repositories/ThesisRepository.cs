@@ -1,6 +1,8 @@
+using Entities.RequestParameters;
 using Entitites.Models;
 using Microsoft.EntityFrameworkCore;
 using Repositories.Contracts;
+using Repositories.Extensions;
 
 
 namespace Repositories
@@ -18,15 +20,20 @@ namespace Repositories
 
         public IQueryable<Thesis> GetAllTheses(bool trackChanges) => FindAll(trackChanges);
 
-        /*public IQueryable<Thesis> GetAllThesesWithDetails(ProductRequestParameters p)
+        public IQueryable<Thesis> GetAllThesesWithDetails(ThesisRequestParameters t)
         {
             return _context
-                .Products
-                .FilteredByCategoryId(p.CategoryId)
-                .FilteredBySearchTerm(p.SearchTerm)
-        }*/
+                   .Thesis
+                   .FilterThesesByTypeId(t.TypeId)
+                   .FilterThesesBySubjectTopicsByUniversityId(t.UniversityId)
+                   .FilterByAuthoId(_context.ThesisSubjectTopics, _context.SubjectTopics, t.SubjectTopicId)
+                   .FilterTheserSearchTerm(_context.ThesisAuthorship, _context.Authors, t.authorSearchTerm)
+                   .FilterBySupervisorSearchTerm(_context.ThesisSupervision, _context.Supervisor, t.supervisorSearchTerm) 
+                   .FilterByTitleSearchTerm(t.titleSearchTerm)
+                   .FilterByYear(t.MinYear, t.MaxYear, t.IsValidYearRange)
+                   .FilterByKeywordSearchTerm(_context.Keyword, t.keywordSearchTerm);
+        }
 
-        // Interface
         public Thesis? GetOneThesis(int id, bool trackChanges)
         {
               return FindByCondition(p => p.THESIS_NO.Equals(id),trackChanges);  
@@ -37,13 +44,9 @@ namespace Repositories
             throw new NotImplementedException();
         }
 
-        /*public IQueryable<Thesis> GetShowcaseTheses(bool trackChanges)
-        {
-            return FindAll(trackChanges)
-                .Where(p => p.ShowCase.Equals(true));
-        }*/
-
         public void UpdateOneThesis(Thesis entity) => Update(entity);
+
+        
        
     }
 }

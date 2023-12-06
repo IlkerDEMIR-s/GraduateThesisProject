@@ -2,6 +2,7 @@
 using Services.Contracts;
 using Entitites.ViewModels;
 using Entitites.Models;
+using Entities.RequestParameters;
 
 namespace GtApp.Controllers
 {
@@ -14,10 +15,10 @@ namespace GtApp.Controllers
             _manager = manager;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(ThesisRequestParameters t)
         {
             ViewData["Title"] = "Theses";
-            var theses = _manager.ThesisService.GetAllTheses(false).ToList();
+            var theses = _manager.ThesisService.GetAllThesesWithDetails(t).ToList();
             var thesisViewModels = new List<ThesisViewModel>();
 
             foreach (var thesis in theses)

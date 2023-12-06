@@ -16,6 +16,8 @@ namespace Repositories
 
         public void CreateThesisAuthorship(ThesisAuthorship thesisAuthorship)=> Create(thesisAuthorship);
 
+        public void DeleteOneThesisAuthorship(ThesisAuthorship thesisAuthorship) => Remove(thesisAuthorship);
+
         public ThesisAuthorship? GetOneThesisAuthorship(int id, bool trackChanges)
         {
             return FindByCondition(p => p.THESIS_NO.Equals(id), trackChanges);

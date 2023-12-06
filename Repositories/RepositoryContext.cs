@@ -1,8 +1,11 @@
 ﻿using Entitites.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 namespace Repositories;
-  public class RepositoryContext : DbContext
+  public class RepositoryContext : IdentityDbContext<IdentityUser>
   {
       public DbSet<Thesis> Thesis { get; set; }
       public DbSet<SubjectTopic> SubjectTopics { get; set; }
@@ -48,14 +51,15 @@ namespace Repositories;
             .HasKey(k => new { k.THESIS_NO, k.KEYWORD });
         modelBuilder.Entity<Supervisor>()
             .ToTable("SUPERVISORS");  // "Supervisors" tablosunu kullanacağımızı belirtiyoruz
-        modelBuilder.Entity<ThesisSupervision>() 
+        modelBuilder.Entity<ThesisSupervision>()
             .ToTable("THESIS_SUPERVISION")  // "Thesis_Supervision" tablosunu kullanacağımızı belirtiyoruz
-            .HasKey(ts => new { ts.THESIS_NO, ts.SUPERVISOR_ID });     
+            .HasKey(ts => new { ts.THESIS_NO, ts.SUPERVISOR_ID });
         modelBuilder.Entity<ThesisType>()
             .ToTable("THESIS_TYPE");  // "Thesis_Types" tablosunu kullanacağımızı belirtiyoruz       
 
         base.OnModelCreating(modelBuilder);
-    }
 
+        modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+    }
 
 }

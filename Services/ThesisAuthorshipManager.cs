@@ -24,6 +24,16 @@ namespace Services
             _manager.Save();
         }
 
+        public void DeleteOneThesisAuthorship(int id)
+        {
+            var thesisAuthorship = GetOneThesisAuthorship(id, true);
+            if (thesisAuthorship is not null)
+            {
+                _manager.ThesisAuthorship.DeleteOneThesisAuthorship(thesisAuthorship);
+                _manager.Save();
+            }
+        }
+
         public IEnumerable<ThesisAuthorship> GetAllThesisAuthorships(bool trackChanges)
         {
             return _manager.ThesisAuthorship.FindAll(trackChanges);

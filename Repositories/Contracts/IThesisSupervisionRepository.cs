@@ -11,5 +11,6 @@ namespace Repositories.Contracts
     {
         ThesisSupervision? GetOneThesisSupervision(int id, bool trackChanges);
         void CreateThesisSupervision(ThesisSupervision thesisSupervision);
+        void DeleteOneThesisSupervision(ThesisSupervision thesisSupervision);
     }
 }

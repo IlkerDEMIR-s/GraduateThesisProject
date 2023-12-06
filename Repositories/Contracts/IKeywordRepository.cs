@@ -11,5 +11,7 @@ namespace Repositories.Contracts
     {
         Keyword? GetOneKeyword(int id, bool trackChanges);
         void CreateKeyword(Keyword keyword);
+        void DeleteOneKeyword(Keyword keyword);
+        void DeleteKeywords(Keyword keyword);
     }
 }

@@ -13,5 +13,6 @@ namespace Services.Contracts
         IEnumerable<ThesisAuthorship> GetAllThesisAuthorships(bool trackChanges);
         ThesisAuthorship? GetOneThesisAuthorship(int id, bool trackChanges);
         void CreateThesisAuthorship(ThesisAuthorship thesisAuthorship);
+        void DeleteOneThesisAuthorship(int id);
     }
 }

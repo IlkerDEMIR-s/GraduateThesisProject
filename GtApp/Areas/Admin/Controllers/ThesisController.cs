@@ -55,7 +55,7 @@ namespace GtApp.Areas.Admin.Controllers
         public void LoadViewBags()
         {
             ViewBag.Universities = new SelectList(_manager.UniversityService.GetAllUniversities(false), "UNIVERSITY_ID", "UNIVERSITY_NAME");
-            ViewBag.Institutes = new SelectList(new List<Institute>(), "INSTITUTE_ID", "INSTITUTE_NAME"); // Empty list initially
+            ViewBag.Institutes = new SelectList(new List<Institute>(), "INSTITUTE_ID", "INSTITUTE_NAME"); // Empty list initially   
             ViewBag.Authors = new SelectList(_manager.AuthorService.GetAllAuthors(false), "AUTHOR_ID", "AUTHOR_NAME");
             ViewBag.SubjectTopics = new SelectList(_manager.SubjectTopicService.GetAllSubjectTopics(false), "SUBJECT_TOPIC_ID", "SUBJECT_TOPIC_CONTENT");
             ViewBag.ThesisTypes = new SelectList(_manager.ThesisTypeService.GetAllThesisTypes(false), "TYPE_ID", "TYPE_NAME");
@@ -162,6 +162,77 @@ namespace GtApp.Areas.Admin.Controllers
 
             return Json(instituteList);
         }
+
+        public IActionResult Update([FromRoute(Name = "id")]int id)
+        {
+            ViewData["Title"] = "Update";
+            LoadViewBags();
+            var thesis = _manager.ThesisService.GetOneThesis(id, false);
+            var supervision = _manager.ThesisSupervisionService.GetOneThesisSupervision(id, false);
+            var supervisor = _manager.SupervisorService.GetOneSupervisor((int)supervision.SUPERVISOR_ID, false);
+            var coSupervisor = supervision.CO_SUPERVISOR_ID != null ? _manager.SupervisorService.GetOneSupervisor((int)supervision.CO_SUPERVISOR_ID, false) : null;
+            var institute = _manager.InstituteService.GetOneInstitute((int)thesis.INSTITUTE_ID, false);
+
+            var model = new ThesisViewModel
+            {
+                Thesis = thesis,
+                Supervisor = supervisor,
+                CoSupervisor = coSupervisor
+            };
+
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Update(UpdateViewModel viewModel)
+        {
+            if(ModelState.IsValid)
+            {
+               _manager.ThesisService.UpdateOneThesis(viewModel.Thesis);
+
+               if (viewModel.CoSupervisor.SUPERVISOR_NAME != null)
+               {
+                   _manager.SupervisorService.CreateSupervisor(viewModel.CoSupervisor);
+               }
+
+               if(viewModel.CoSupervisor.SUPERVISOR_ID == 0)
+                {
+                       viewModel.CoSupervisor = null;
+                }
+
+                var ThesisSupervision = new ThesisSupervision
+                {
+                    THESIS_NO = viewModel.Thesis.THESIS_NO,
+                    SUPERVISOR_ID = viewModel.Supervisor.SUPERVISOR_ID,                    
+                    CO_SUPERVISOR_ID = viewModel.CoSupervisor?.SUPERVISOR_ID
+               };
+
+
+               _manager.ThesisSupervisionService.UpdateOneThesisSupervision(ThesisSupervision);
+
+               return RedirectToAction("Index");
+            }
+
+            LoadViewBags();
+            return View();
+
+        }
+
+        [HttpGet]
+        public IActionResult Delete([FromRoute(Name = "id")] int id)
+        {
+            _manager.KeywordService.DeleteKeywordsByThesisId(id);
+            _manager.thesisAuthorshipService.DeleteOneThesisAuthorship(id);
+            _manager.ThesisSupervisionService.DeleteOneThesisSupervision(id);
+            _manager.ThesisSubjectTopicService.DeleteThesisSubjectTopicsByThesisId(id);
+            _manager.ThesisService.DeleteOneThesis(id);
+
+            return RedirectToAction("Index");
+        }
+
+
 
 
     }

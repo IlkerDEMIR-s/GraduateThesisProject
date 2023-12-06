@@ -1,19 +1,23 @@
 @model ThesisViewModel
 
 <div class="text-center">
-    <div class="display-6">Create</div>
-    <hr class="my-4" style="border: 2px solid green; border-radius: 5px;">
+    <div class="display-6">Update</div>
+    <hr class="my-4" style="border: 2px solid yellow; border-radius: 5px;">
 </div>
 
-<form method="post" asp-action="Create" enctype="multipart/form-data">
+<form method="post" asp-action="Update" enctype="multipart/form-data">
+
+    <input type="hidden" asp-for="Thesis.THESIS_NO" />
+    <input type="hidden" asp-for="Thesis.AUTHOR_ID" />
+    <input type="hidden" asp-for="Supervisor.SUPERVISOR_ID" />
+    @if (Model.CoSupervisor != null)
+    {
+        <input type="hidden" asp-for="CoSupervisor.SUPERVISOR_ID" />
+    }
 
     <div class="text-danger" asp-validation-summary="All"></div>
     <div class="row">
         <div class="col-md-6">
-            <div class="form-group my-3">
-                <label asp-for="Thesis.THESIS_NO">Thesis Number</label>
-                <input asp-for="Thesis.THESIS_NO" class="form-control" />
-            </div>
             <div class="form-group my-3">
                 <label asp-for="Thesis.TITLE">Thesis Title</label>
                 <input asp-for="Thesis.TITLE" class="form-control" />
@@ -30,7 +34,7 @@
             <div class="form-group my-3">
                 <label asp-for="Thesis.TYPE_ID">Type</label>
                 <select asp-for="Thesis.TYPE_ID" class="form-control"
-                    asp-items="@((IEnumerable<SelectListItem>)ViewBag.ThesisTypes)">
+                        asp-items="@((IEnumerable<SelectListItem>)ViewBag.ThesisTypes)">
                     <option value="">-- Select Type --</option>
                 </select>
             </div>
@@ -40,12 +44,12 @@
                 <input asp-for="Thesis.NUM_PAGES" class="form-control" />
             </div>
 
+        </div>
+        <div class="col-md-6">
             <div class="form-group my-3">
                 <label asp-for="Thesis.LANGUAGE">Language</label>
                 <input asp-for="Thesis.LANGUAGE" class="form-control" />
             </div>
-        </div>
-        <div class="col-md-6">
             <div class="form-group my-3">
                 <label asp-for="Thesis.UNIVERSITY_ID">University</label>
                 <select id="universityDropdown" asp-for="Thesis.UNIVERSITY_ID" class="form-control"
@@ -61,20 +65,14 @@
                 </select>
             </div>
 
-            <div class="form-group my-3">
-                <label asp-for="Thesis.AUTHOR_ID">Author</label>
-                <select asp-for="Thesis.AUTHOR_ID" class="form-control"
-                    asp-items="@((IEnumerable<SelectListItem>)ViewBag.Authors)">
-                    <option value="">-- Select Author --</option>
-                </select>
-            </div>
+            @* Hidden fields to store the selected IDs *@
+            <input type="hidden" asp-for="Thesis.UNIVERSITY_ID" />
+            <input type="hidden" asp-for="Thesis.INSTITUTE_ID" />
 
             @* Hidden fields to store the selected IDs *@
             <input type="hidden" asp-for="Thesis.UNIVERSITY_ID" />
             <input type="hidden" asp-for="Thesis.INSTITUTE_ID" />
-            <input type="hidden" asp-for="Thesis.AUTHOR_ID" />
-
-
+ 
             <div class="form-group my-3">
                 <label asp-for="Supervisor.SUPERVISOR_NAME">Supervisor's Name</label>
                 <input asp-for="Supervisor.SUPERVISOR_NAME" class="form-control" />
@@ -90,37 +88,16 @@
                 @* Add a hidden field to store the current date for submission when submitting the form *@
                 <input type="hidden" asp-for="Thesis.SUBMISSION_DATE" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
             </div>
-            <div class="form-group my-3">
-                <label asp-for="SubjectTopic.SUBJECT_TOPIC_ID">Subject</label>
-                <select asp-for="SubjectTopic.SUBJECT_TOPIC_ID" class="form-control"
-                    asp-items="@((IEnumerable<SelectListItem>)ViewBag.SubjectTopics)">
-                    <option value="">-- Select Subject --</option>
-                </select>
-                <span asp-validation-for="SubjectTopic.SUBJECT_TOPIC_ID" class="text-danger"></span>
-            </div>
-
-            <input type="hidden" asp-for="SubjectTopic.SUBJECT_TOPIC_ID" />
-
-            <div class="form-group my-3">
-                <label for="Keywords">Keywords</label>
-                <div id="keywords-container">
-                    <input type="text" name="EnteredKeywords" class="form-control mt-2" />
-                </div>
-                <button type="button" class="btn btn-primary mt-2" id="addKeywordBtn">
-                    <i class="fa-solid fa-circle-plus"></i> Add Keyword
-                </button>
-            </div>
-
         </div>
     </div>
 
     <div class="form-group my-3">
         <div class="btn-group">
-            <button class="btn btn-success" type="submit">
-                <i class="fa fa-save"></i>
-                Save
+            <button class="btn btn-warning" type="submit">
+                <i class="fa-solid fa-square-pen"></i>
+                Update
             </button>
-            <a asp-action="Index" class="btn btn-outline-success">
+            <a asp-action="Index" class="btn btn-outline-warning">
                 <i class="fa fa-list"></i>
                 Theses
             </a>

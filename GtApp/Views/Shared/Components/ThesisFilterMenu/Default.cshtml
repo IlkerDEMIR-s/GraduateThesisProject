@@ -1,0 +1,41 @@
+<div class="my-3">
+    <h6 class="lead">
+        <i class="fa fa-filter text-secondary"></i>
+        Filters
+    </h6>
+</div>
+
+<div class="my-2">
+    <form method="get" asp-action="index">
+        <input type="hidden" name="typeId" value="@(Context.Request.Query["typeId"])" />
+        <div class="form-group my-2">
+            <label for="supervisorSearchTerm">Supervisor</label>
+            <input class="form-control" name="supervisorSearchTerm" placeholder="Supervisor" />
+        </div>
+        <label for="Max. year / Min. year">Max. year / Min. year</label>
+        <div class="form-group my-2">
+            <input class="form-control" name="MaxYear" placeholder="Max. year" />
+        </div>
+        <div class="form-group my-2">
+            <input class="form-control" name="MinYear" placeholder="Min. year" />
+        </div>
+        <div class="form-group my-2">
+            <label for="keywordSearchTerm">Keyword</label>
+            <input class="form-control" name="keywordSearchTerm" placeholder="Keyword" />
+        </div>
+
+        <div class="form-group my-2">
+            <button type="submit" class="btn btn-primary btn-sm">Filter</button>
+        </div>
+    </form>
+    <button class="btn btn-outline-primary btn-sm" onclick="clearFilters()">Clear Filters</button>
+</div>
+
+
+
+<script>
+    function clearFilters() {
+        // Redirect to the same page without query parameters
+        window.location.href = window.location.origin + window.location.pathname;
+    }
+</script>

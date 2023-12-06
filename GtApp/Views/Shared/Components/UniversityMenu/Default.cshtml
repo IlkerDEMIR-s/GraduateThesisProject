@@ -1,0 +1,29 @@
+@model IEnumerable<University>
+
+<div class="mt-3">
+    <h6 class="lead">
+        <i class="fa-solid fa-building-columns text-secondary"></i>
+        Universities
+    </h6>
+</div>
+
+<div class="my-4">
+    <select id="universityDropdown" class="form-control">
+        <option value="">Select a University</option>
+        @foreach (var u in Model)
+        {
+            <option value="@Url.Action("Index", new { universityId = u.UNIVERSITY_ID })">
+                @u.UNIVERSITY_NAME
+            </option>
+        }
+    </select>
+</div>
+
+<script>
+    document.getElementById("universityDropdown").addEventListener("change", function () {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>

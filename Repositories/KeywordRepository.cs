@@ -15,6 +15,11 @@ namespace Repositories
         }
 
         public void CreateKeyword(Keyword keyword) => Create(keyword);
+
+        public void DeleteKeywords(Keyword keyword) => Remove(keyword);
+
+        public void DeleteOneKeyword(Keyword keyword) => Remove(keyword);
+
         public Keyword? GetOneKeyword(int id, bool trackChanges)
         {
             return FindByCondition(p => p.KEYWORD.Equals(id), trackChanges);

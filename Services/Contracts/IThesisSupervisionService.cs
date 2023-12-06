@@ -12,5 +12,7 @@ namespace Services.Contracts
         IEnumerable<ThesisSupervision> GetAllThesisSupervisions(bool trackChanges);
         ThesisSupervision? GetOneThesisSupervision(int id, bool trackChanges);
         void CreateThesisSupervision(ThesisSupervision thesisSupervision);
+        void UpdateOneThesisSupervision(ThesisSupervision thesisSupervision);
+        void DeleteOneThesisSupervision(int id);
     }
 }

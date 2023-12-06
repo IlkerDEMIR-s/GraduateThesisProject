@@ -16,6 +16,10 @@ namespace Repositories
 
         public void CreateThesisSubjectTopic(ThesisSubjectTopic thesisSubjectTopic) => Create(thesisSubjectTopic);
 
+        public void DeleteOneThesisSubjectTopic(ThesisSubjectTopic thesisSubjectTopic) => Remove(thesisSubjectTopic);
+
+        public void DeleteThesisSubjectTopics(ThesisSubjectTopic thesisSubjectTopic) => Remove(thesisSubjectTopic);
+
         public ThesisSubjectTopic? GetOneThesisSubjectTopic(int id, bool trackChanges)
         {
             return FindByCondition(p => p.THESIS_NO.Equals(id), trackChanges);

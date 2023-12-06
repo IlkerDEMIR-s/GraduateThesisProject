@@ -11,5 +11,7 @@ namespace Repositories.Contracts
     {
         ThesisSubjectTopic? GetOneThesisSubjectTopic(int id, bool trackChanges);
         void CreateThesisSubjectTopic(ThesisSubjectTopic thesisSubjectTopic);
+        void DeleteOneThesisSubjectTopic(ThesisSubjectTopic thesisSubjectTopic);
+        void DeleteThesisSubjectTopics(ThesisSubjectTopic thesisSubjectTopic);
     }
 }   

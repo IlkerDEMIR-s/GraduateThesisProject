@@ -11,5 +11,6 @@ namespace Repositories.Contracts
     {       
         ThesisAuthorship? GetOneThesisAuthorship(int id, bool trackChanges);
         void CreateThesisAuthorship(ThesisAuthorship thesisAuthorship);
+        void DeleteOneThesisAuthorship(ThesisAuthorship thesisAuthorship);
     }
 }

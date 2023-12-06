@@ -23,6 +23,27 @@ namespace Services
             _manager.Save();
         }
 
+        public void DeleteKeywordsByThesisId(int id)
+        {
+            var keywords = GetAllKeywords(true).Where(k => (int)k.THESIS_NO == id);
+            foreach (var keyword in keywords)
+            {
+                _manager.Keyword.DeleteKeywords(keyword);
+            }
+                _manager.Save();
+
+        }
+
+        public void DeleteOneKeyword(int id)
+        {
+            var keyword = GetOneKeyword(id, true);
+            if (keyword is not null)
+            {
+                _manager.Keyword.DeleteOneKeyword(keyword);
+                _manager.Save();
+            }
+        }
+
         public IEnumerable<Keyword> GetAllKeywords(bool trackChanges)
         {
             return _manager.Keyword.FindAll(trackChanges);

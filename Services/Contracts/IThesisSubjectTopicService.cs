@@ -12,5 +12,7 @@ namespace Services.Contracts
         IEnumerable<ThesisSubjectTopic> GetAllThesisSubjectTopics(bool trackChanges);
         ThesisSubjectTopic? GetOneThesisSubjectTopic(int id, bool trackChanges);
         void CreateThesisSubjectTopic(ThesisSubjectTopic thesisSubjectTopic);
+        void DeleteOneThesisSubjectTopic(int id);
+        void DeleteThesisSubjectTopicsByThesisId(int id);
     }
 }

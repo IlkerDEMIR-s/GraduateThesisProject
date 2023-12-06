@@ -16,6 +16,8 @@ namespace Repositories
 
         public void CreateThesisSupervision(ThesisSupervision thesisSupervision)=> Create(thesisSupervision);
 
+        public void DeleteOneThesisSupervision(ThesisSupervision thesisSupervision) => Remove(thesisSupervision);
+
         public ThesisSupervision? GetOneThesisSupervision(int id, bool trackChanges)
         {
             return FindByCondition(p => p.THESIS_NO.Equals(id), trackChanges);

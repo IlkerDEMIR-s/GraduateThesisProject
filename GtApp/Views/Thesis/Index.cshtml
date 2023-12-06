@@ -2,8 +2,12 @@
 
 <div class="row">
     <div class="col-md-3">
+        @await Component.InvokeAsync("TypeMenu")
         @await Component.InvokeAsync("SubjectTopicMenu")
+        @await Component.InvokeAsync("UniversityMenu")
+        @await Component.InvokeAsync("ThesisFilterMenu")
     </div>
+
     <div class="col-md-9">
         <div class="text-center">
             <div class="display-6 my-3 font-weight-bold" style="font-family: 'Arial', sans-serif;">Theses</div>
@@ -12,9 +16,24 @@
                 <thead>
                     <tr>
                         <th class="font-weight-bold"><i class="fa fa-hashtag"></i>Thesis No</th>
-                        <th class="font-weight-bold">Author</th>
-                        <th class="font-weight-bold">Year</th>
-                        <th class="font-weight-bold">Title</th>
+                        <th class="font-weight-bold">Authors
+                            <form method="get" asp-action="index">
+                                <input type="hidden" name="typeId" value="@(Context.Request.Query["typeId"])" />
+                                <div class="form-group my-2">
+                                    <input class="form-control" name="authorSearchTerm" placeholder="Author N." />
+                                </div>
+                            </form>
+                        </th>
+                        <th class="font-weight-bold">Year
+                        </th>
+                        <th class="font-weight-bold">Title
+                            <form method="get" asp-action="index">
+                                <input type="hidden" name="typeId" value="@(Context.Request.Query["typeId"])" />
+                                <div class="form-group my-2">
+                                    <input class="form-control" name="titleSearchTerm" placeholder="Title" />
+                                </div>
+                            </form>
+                        </th>
                         <th class="font-weight-bold">Thesis Type</th>
                         <th class="font-weight-bold">Subject</th>
                     </tr>
@@ -40,17 +59,16 @@
                             </td>
                             <td>
                                 <div class="btn-group">
-                                                                <a class="btn btn-info btn-sm" asp-action="Get"
-                                asp-route-id="@thesisViewModel.Thesis.THESIS_NO">
-                                <i class="fa-solid fa-arrow-right"></i> Get Details
-                            </a>
-                        </div>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-</div>
+                                    <a class="btn btn-info btn-sm" asp-action="Get"
+                                        asp-route-id="@thesisViewModel.Thesis.THESIS_NO">
+                                        <i class="fa-solid fa-arrow-right"></i> Get Details
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
-

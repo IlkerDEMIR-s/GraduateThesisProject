@@ -24,6 +24,26 @@ namespace Services
             _manager.Save();
         }
 
+        public void DeleteOneThesisSubjectTopic(int id)
+        {
+            var thesisSubjectTopic = GetOneThesisSubjectTopic(id, true);
+            if (thesisSubjectTopic is not null)
+            {
+                _manager.ThesisSubjectTopic.DeleteOneThesisSubjectTopic(thesisSubjectTopic);
+                _manager.Save();
+            }
+        }
+
+        public void DeleteThesisSubjectTopicsByThesisId(int id)
+        {
+            var thesisSubjectTopics = GetAllThesisSubjectTopics(true).Where(k => (int)k.THESIS_NO == id);
+            foreach (var thesisSubjectTopic in thesisSubjectTopics)
+            {
+                _manager.ThesisSubjectTopic.DeleteThesisSubjectTopics(thesisSubjectTopic);
+            }
+            _manager.Save();
+        }
+
         public IEnumerable<ThesisSubjectTopic> GetAllThesisSubjectTopics(bool trackChanges)
         {
             return _manager.ThesisSubjectTopic.FindAll(trackChanges);
