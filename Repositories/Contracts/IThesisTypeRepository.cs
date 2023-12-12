@@ -10,6 +10,8 @@ namespace Repositories.Contracts
     public interface IThesisTypeRepository : IRepositoryBase<ThesisType> 
     {
         ThesisType? GetOneThesisType(int id, bool trackChanges);
+        void DeleteOneThesisType(ThesisType type);
+        void CreateOneThesisType(ThesisType type);
 
     }
 }

@@ -13,6 +13,23 @@ namespace Services
         {
             _manager = manager;
         }
+
+        public void CreateSubjectTopic(SubjectTopic newSubjectTopic)
+        {
+            _manager.SubjectTopic.Create(newSubjectTopic);
+            _manager.Save();
+        }
+
+        public void DeleteSubjectTopic(int id)
+        {
+            var subjectTopic = GetOneSubjectTopic(id, true);
+            if (subjectTopic is not null)
+            {
+              _manager.SubjectTopic.DeleteOneSubjectTopic(subjectTopic);
+              _manager.Save();
+            }
+        }
+
         public IEnumerable<SubjectTopic> GetAllSubjectTopics(bool trackChanges)
         {
             return _manager.SubjectTopic.FindAll(trackChanges);

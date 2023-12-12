@@ -10,6 +10,7 @@ namespace Repositories.Contracts
     public interface IUniversityRepository : IRepositoryBase<University>
     {
         University? GetOneUniversity(int id, bool trackChanges);
-
+        void CreateOneUniversity(University university);
+        void DeleteOneUniversity(University university);
     }
 }

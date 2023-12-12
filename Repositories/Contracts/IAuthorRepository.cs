@@ -10,6 +10,7 @@ namespace Repositories.Contracts
     public interface IAuthorRepository : IRepositoryBase<Author>
     {
         Author? GetOneAuthor(int id, bool trackChanges);
-
+        void CreateOneAuthor(Author author);
+        Author? GetAuthorByAspNetUserId(string id, bool trackChanges);
     }
 }

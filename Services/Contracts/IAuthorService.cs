@@ -9,7 +9,9 @@ namespace Services.Contracts
 {
     public interface IAuthorService
     {
+        void CreateAuthor(Author author);
         IEnumerable<Author> GetAllAuthors(bool trackChanges);
         Author? GetOneAuthor(int id, bool trackChanges);
+        Author? GetAuthorByAspNetUserId(string id, bool trackChanges);
     }
 }

@@ -44,15 +44,27 @@
                     </td>
                     <td>
                         <div class="btn-group">
-                            <a class="btn btn-warning" asp-action="Update"
+                            <a
+                               data-toggle="tooltip"
+                               data-placement="top"
+                               title="Edit"
+                               class="btn btn-warning" asp-action="Update"
                                 asp-route-id="@thesisViewModel.Thesis.THESIS_NO">
                                 <i class="fa-solid fa-edit"></i> Edit
                             </a>
-                            <a class="btn btn-danger" asp-action="Delete"
+                            <a
+                                data-toggle="tooltip"
+                                data-placement="top"
+                                title="Delete"
+                                class="btn btn-danger" asp-action="Delete"
                                 asp-route-id="@thesisViewModel.Thesis.THESIS_NO">
                                 <i class="fa fa-trash"></i> Delete
                             </a>
-                            <a class="btn btn-info" taget="_blank" asp-area="" asp-controller="Thesis" asp-action="Get" 
+                            <a 
+                                data-toggle="tooltip"
+                                data-placement="top"
+                                title="View"
+                                class="btn btn-info" taget="_blank" asp-area="" asp-controller="Thesis" asp-action="Get" 
                                 asp-route-id="@thesisViewModel.Thesis.THESIS_NO">
                                 <i class="fa-solid fa-search"></i> Web
                             </a>
@@ -64,3 +76,13 @@
     </table>
 </div>
 </div>
+
+
+@section Scripts
+    {
+    <script type="text/javascript">
+        $(document).ready(() => {
+            $('[data-toggle="tooltip"]').tooltip()
+        });
+    </script>
+}

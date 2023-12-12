@@ -14,12 +14,13 @@ namespace Entitites.ViewModels
         public List<SubjectTopic>? SubjectTopics { get; set; }
         public Supervisor? Supervisor { get; set; }
         public Supervisor? CoSupervisor { get; set; }
-        private Keyword? Keyword { get; set; }
+        public Keyword? Keyword { get; set; }
         public List<Keyword>? Keywords { get; set; }
         public ThesisAuthorship? ThesisAuthorship { get; set; }
         public List<string>? EnteredKeywords { get; set; }
         public ThesisType? ThesisType { get; set; }
-        public ThesisSupervision? ThesisSupervision { get; set; }
+        public ThesisSupervision? ThesisSupervision { get; set; } 
+        public int? AuthorId { get; set; }       
 
         [Required (ErrorMessage = "Please enter a Supervisor Name.")]
             public string SupervisorName => Supervisor?.SUPERVISOR_NAME ?? "";

@@ -1,7 +1,7 @@
 @model ThesisViewModel
 
 <div class="text-center">
-    <div class="display-6">Update</div>
+    <div class="display-6 my-3">Update</div>
     <hr class="my-4" style="border: 2px solid yellow; border-radius: 5px;">
 </div>
 
@@ -34,18 +34,17 @@
             <div class="form-group my-3">
                 <label asp-for="Thesis.TYPE_ID">Type</label>
                 <select asp-for="Thesis.TYPE_ID" class="form-control"
-                        asp-items="@((IEnumerable<SelectListItem>)ViewBag.ThesisTypes)">
+                    asp-items="@((IEnumerable<SelectListItem>)ViewBag.ThesisTypes)">
                     <option value="">-- Select Type --</option>
                 </select>
             </div>
+        </div>
 
+        <div class="col-md-6">
             <div class="form-group my-3">
                 <label asp-for="Thesis.NUM_PAGES">Number of pages</label>
                 <input asp-for="Thesis.NUM_PAGES" class="form-control" />
             </div>
-
-        </div>
-        <div class="col-md-6">
             <div class="form-group my-3">
                 <label asp-for="Thesis.LANGUAGE">Language</label>
                 <input asp-for="Thesis.LANGUAGE" class="form-control" />
@@ -60,7 +59,8 @@
 
             <div class="form-group my-3">
                 <label asp-for="Thesis.INSTITUTE_ID">Institute</label>
-                <select asp-for="Thesis.INSTITUTE_ID" id="instituteDropdown" class="form-control">
+                <select asp-for="Thesis.INSTITUTE_ID" id="instituteDropdown" class="form-control"
+                    asp-items="@((IEnumerable<SelectListItem>)ViewBag.AllInstitutes)">
                     <option value="">-- Select Institute --</option>
                 </select>
             </div>
@@ -72,17 +72,6 @@
             @* Hidden fields to store the selected IDs *@
             <input type="hidden" asp-for="Thesis.UNIVERSITY_ID" />
             <input type="hidden" asp-for="Thesis.INSTITUTE_ID" />
- 
-            <div class="form-group my-3">
-                <label asp-for="Supervisor.SUPERVISOR_NAME">Supervisor's Name</label>
-                <input asp-for="Supervisor.SUPERVISOR_NAME" class="form-control" />
-                <span asp-validation-for="SupervisorName" class="text-danger"></span>
-            </div>
-
-            <div class="form-group my-3">
-                <label asp-for="CoSupervisor.SUPERVISOR_NAME">CoSupervisor's Name</label>
-                <input asp-for="CoSupervisor.SUPERVISOR_NAME" class="form-control" />
-            </div>
 
             <div class="form-group my-3">
                 @* Add a hidden field to store the current date for submission when submitting the form *@
@@ -110,25 +99,12 @@
         $(document).ready(function () {
             $("#universityDropdown").change(function () {
                 var universityId = $(this).val();
+            });
+        });
 
-                $.ajax({
-                    url: "/Admin/Thesis/GetInstitutes",  // Adjust the URL as needed
-                    type: "GET",
-                    data: { universityId: universityId },
-                    success: function (data) {
-                        $("#instituteDropdown").empty();
-                        $("#instituteDropdown").append($('<option>', {
-                            value: "",
-                            text: "-- Select Institute --"
-                        }));
-                        $.each(data, function (index, item) {
-                            $("#instituteDropdown").append($('<option>', {
-                                value: item.value,
-                                text: item.text
-                            }));
-                        });
-                    }
-                });
+        $(document).ready(function () {
+            $("#instituteDropdown").change(function () {
+                var instituteId = $(this).val();
             });
         });
 

@@ -1,0 +1,56 @@
+@model UniversityAndInstituteViewModel
+
+<div class="text-center">
+    <div class="display-6 my-3">Create University</div>
+    <hr class="my-4" style="border: 2px solid green; border-radius: 5px;">
+</div>
+
+<form method="post" asp-action="Create" enctype="multipart/form-data">
+
+    <div class="text-danger" asp-validation-summary="All"></div>
+    <div class="row">
+            <div class="form-group my-3">
+                <label asp-for="University.UNIVERSITY_NAME" class="control-label">University Name</label>
+                <input asp-for="University.UNIVERSITY_NAME" class="form-control" />
+            </div>
+    </div>
+           <div class="form-group my-3">
+                <label for="Institutes">Institutes</label>
+                <div id="institutes-container">
+                    <input type="text" name="EnteredInstitutes" class="form-control mt-2" />
+                </div>
+                <button type="button" class="btn btn-primary mt-2" id="addInstituteBtn">
+                    <i class="fa-solid fa-circle-plus"></i> Institute
+                </button>
+            </div>
+
+    <div class="form-group my-3">
+        <div class="btn-group">
+            <button class="btn btn-success" type="submit">
+                <i class="fa fa-save"></i>
+                Save
+            </button>
+            <a asp-action="Index" class="btn btn-outline-success">
+                <i class="fa fa-list"></i>
+                Universities
+            </a>
+        </div>
+    </div>
+
+</form>
+
+@section scripts {
+    <script>
+
+        $(document).ready(function () {
+            var institutesContainer = $("#institutes-container");
+            var addInstituteBtn = $("#addInstituteBtn");
+
+            addInstituteBtn.click(function () {
+                var newInput = '<input type="text" name="EnteredInstitutes" class="form-control mt-2" />';
+                institutesContainer.append(newInput);
+            });
+        });
+    </script>
+
+}

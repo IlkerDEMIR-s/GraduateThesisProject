@@ -13,9 +13,21 @@ namespace Services
         {
             _manager = manager;
         }
+
+        public void CreateAuthor(Author author)
+        {
+            _manager.Author.Create(author);
+            _manager.Save();
+        }
+
         public IEnumerable<Author> GetAllAuthors(bool trackChanges)
         {
             return _manager.Author.FindAll(trackChanges);
+        }
+
+        public Author? GetAuthorByAspNetUserId(string id, bool trackChanges)
+        {
+            return _manager.Author.GetAuthorByAspNetUserId(id, trackChanges);
         }
 
         public Author? GetOneAuthor(int id, bool trackChanges)

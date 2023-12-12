@@ -17,6 +17,7 @@ namespace Services
         private readonly ISupervisorService _supervisorService;
         private readonly IThesisSupervisionService _thesisSupervisionService;
         private readonly IThesisTypeService _thesisTypeService;
+        private readonly IAuthService _authService;
 
         public ServiceManager(IThesisService thesisService,
             ISubjectTopicService thesisTopicService,
@@ -28,7 +29,8 @@ namespace Services
             IKeywordService keywordService,
             ISupervisorService supervisorService,
             IThesisSupervisionService thesisSupervisionService,
-            IThesisTypeService thesisTypeService)
+            IThesisTypeService thesisTypeService,
+            IAuthService authService)
         {
             _thesisService = thesisService;
             _subjectTopicService = thesisTopicService;
@@ -41,6 +43,7 @@ namespace Services
             _supervisorService = supervisorService;
             _thesisSupervisionService = thesisSupervisionService;
             _thesisTypeService = thesisTypeService;
+            _authService = authService;
         }
 
         public IThesisService ThesisService => _thesisService;
@@ -61,5 +64,8 @@ namespace Services
 
         public IThesisSupervisionService ThesisSupervisionService => _thesisSupervisionService;
         public IThesisTypeService ThesisTypeService => _thesisTypeService;
+
+        public IAuthService AuthService => _authService;
+
     }
 }

@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Repositories;
@@ -25,11 +26,13 @@ namespace GtApp.Infrastructure
         {
             services.AddIdentity<IdentityUser, IdentityRole>(options =>
             {
+                options.User.AllowedUserNameCharacters =
+                              "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 çığöşüÇİĞÖŞÜ-._@+";
                 options.SignIn.RequireConfirmedAccount = false;
                 options.User.RequireUniqueEmail = true;
                 options.Password.RequireUppercase = false;
                 options.Password.RequireLowercase = false;
-                options.Password.RequireDigit = false;
+                options.Password.RequireDigit = false;                
                 options.Password.RequiredLength = 6;
                 /*
                 options.Password.RequiredUniqueChars = 3;
@@ -82,7 +85,20 @@ namespace GtApp.Infrastructure
             services.AddScoped<ISupervisorService, SupervisorManager>();
             services.AddScoped<IThesisSupervisionService, ThesisSupervisionManager>();
             services.AddScoped<IThesisTypeService, ThesisTypeManager>();
+            services.AddScoped<IAuthService, AuthManager>();
         }
+
+        public static void ConfigureApplicationCookie(this IServiceCollection services)
+        {
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = new PathString("/Account/Login");
+                options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
+                options.AccessDeniedPath = new PathString("/Account/AccessDenied");
+            });
+        }
+     
 
         public static void ConfigureRouting(this IServiceCollection services)
         {

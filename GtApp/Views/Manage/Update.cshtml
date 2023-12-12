@@ -1,0 +1,122 @@
+@model ThesisViewModel
+
+<div class="text-center">
+    <div class="display-6 my-3">Update</div>
+    <hr class="my-4" style="border: 2px solid yellow; border-radius: 5px;">
+</div>
+
+<form method="post" asp-action="Update" enctype="multipart/form-data">
+
+    <input type="hidden" asp-for="Thesis.THESIS_NO" />
+    <input type="hidden" asp-for="Thesis.AUTHOR_ID" />
+    <input type="hidden" asp-for="Supervisor.SUPERVISOR_ID" />
+    
+    @if (Model.CoSupervisor != null)
+    {
+        <input type="hidden" asp-for="CoSupervisor.SUPERVISOR_ID" />
+    }
+
+    <div class="text-danger" asp-validation-summary="All"></div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group my-3">
+                <label asp-for="Thesis.TITLE">Thesis Title</label>
+                <input asp-for="Thesis.TITLE" class="form-control" />
+            </div>
+            <div class="form-group my-3">
+                <label asp-for="Thesis.ABSTRACT">Abstract</label>
+                <textarea asp-for="Thesis.ABSTRACT" class="form-control" rows="4"></textarea>
+            </div>
+            <div class="form-group my-3">
+                <label asp-for="Thesis.YEAR">Year</label>
+                <input asp-for="Thesis.YEAR" class="form-control" />
+            </div>
+
+            <div class="form-group my-3">
+                <label asp-for="Thesis.TYPE_ID">Type</label>
+                <select asp-for="Thesis.TYPE_ID" class="form-control"
+                    asp-items="@((IEnumerable<SelectListItem>)ViewBag.ThesisTypes)">
+                    <option value="">-- Select Type --</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group my-3">
+                <label asp-for="Thesis.NUM_PAGES">Number of pages</label>
+                <input asp-for="Thesis.NUM_PAGES" class="form-control" />
+            </div>
+            <div class="form-group my-3">
+                <label asp-for="Thesis.LANGUAGE">Language</label>
+                <input asp-for="Thesis.LANGUAGE" class="form-control" />
+            </div>
+            <div class="form-group my-3">
+                <label asp-for="Thesis.UNIVERSITY_ID">University</label>
+                <select id="universityDropdown" asp-for="Thesis.UNIVERSITY_ID" class="form-control"
+                    asp-items="@((IEnumerable<SelectListItem>)ViewBag.Universities)">
+                    <option value="">-- Select University --</option>
+                </select>
+            </div>
+
+            <div class="form-group my-3">
+                <label asp-for="Thesis.INSTITUTE_ID">Institute</label>
+                <select asp-for="Thesis.INSTITUTE_ID" id="instituteDropdown" class="form-control"
+                    asp-items="@((IEnumerable<SelectListItem>)ViewBag.AllInstitutes)">
+                    <option value="">-- Select Institute --</option>
+                </select>
+            </div>
+
+            @* Hidden fields to store the selected IDs *@
+            <input type="hidden" asp-for="Thesis.UNIVERSITY_ID" />
+            <input type="hidden" asp-for="Thesis.INSTITUTE_ID" />
+
+            @* Hidden fields to store the selected IDs *@
+            <input type="hidden" asp-for="Thesis.UNIVERSITY_ID" />
+            <input type="hidden" asp-for="Thesis.INSTITUTE_ID" />
+
+            <div class="form-group my-3">
+                @* Add a hidden field to store the current date for submission when submitting the form *@
+                <input type="hidden" asp-for="Thesis.SUBMISSION_DATE" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group my-3">
+        <div class="btn-group">
+            <button class="btn btn-warning" type="submit">
+                <i class="fa-solid fa-square-pen"></i>
+                Update
+            </button>
+            <a asp-action="Index" class="btn btn-outline-warning">
+                <i class="fa fa-list"></i>
+                Theses
+            </a>
+        </div>
+    </div>
+</form>
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $("#universityDropdown").change(function () {
+                var universityId = $(this).val();
+            });
+        });
+
+        $(document).ready(function () {
+            $("#instituteDropdown").change(function () {
+                var instituteId = $(this).val();
+            });
+        });
+
+        $(document).ready(function () {
+            var keywordsContainer = $("#keywords-container");
+            var addKeywordBtn = $("#addKeywordBtn");
+
+            addKeywordBtn.click(function () {
+                var newInput = '<input type="text" name="EnteredKeywords" class="form-control mt-2" />';
+                keywordsContainer.append(newInput);
+            });
+        });
+    </script>
+}

@@ -25,9 +25,9 @@ namespace Repositories
             return _context
                    .Thesis
                    .FilterThesesByTypeId(t.TypeId)
-                   .FilterThesesBySubjectTopicsByUniversityId(t.UniversityId)
-                   .FilterByAuthoId(_context.ThesisSubjectTopics, _context.SubjectTopics, t.SubjectTopicId)
-                   .FilterTheserSearchTerm(_context.ThesisAuthorship, _context.Authors, t.authorSearchTerm)
+                   .FilterThesesByUniversityId(t.UniversityId)
+                   .FilterThesesBySubjectTopicId(_context.ThesisSubjectTopics, _context.SubjectTopics, t.SubjectTopicId)
+                   .FilterByAuthorSearchTerm(_context.ThesisAuthorship, _context.Authors, t.authorSearchTerm)
                    .FilterBySupervisorSearchTerm(_context.ThesisSupervision, _context.Supervisor, t.supervisorSearchTerm) 
                    .FilterByTitleSearchTerm(t.titleSearchTerm)
                    .FilterByYear(t.MinYear, t.MaxYear, t.IsValidYearRange)

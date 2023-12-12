@@ -14,6 +14,7 @@ namespace Services.Contracts
        ISupervisorService SupervisorService { get; }
        IThesisSupervisionService ThesisSupervisionService { get; }
        IThesisTypeService ThesisTypeService { get; }
+       IAuthService AuthService { get; }
    }
 
 

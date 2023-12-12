@@ -1,4 +1,5 @@
 ﻿using Entitites.Models;
+using Microsoft.EntityFrameworkCore;
 using Repositories.Contracts;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,13 @@ namespace Repositories
     {
         public AuthorRepository(RepositoryContext context) : base(context)
         {
+        }
+
+        public void CreateOneAuthor(Author author) => Create(author);
+
+        public Author? GetAuthorByAspNetUserId(string id, bool trackChanges)
+        {
+            return FindByCondition(p => p.ASPNET_USER_ID.Equals(id), trackChanges);
         }
 
         public Author? GetOneAuthor(int id, bool trackChanges)

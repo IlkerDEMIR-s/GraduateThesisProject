@@ -11,5 +11,8 @@ namespace Services.Contracts
     {
         IEnumerable<Institute> GetAllInstitutes(bool trackChanges);
         Institute? GetOneInstitute(int id, bool trackChanges);
-    }
+        void CreateInstitute(Institute institute);
+        void DeleteOneInstitute(int id);
+        void DeleteInstitutesByUniversityId(int id);
+}
 }

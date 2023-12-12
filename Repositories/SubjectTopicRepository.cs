@@ -11,6 +11,9 @@ namespace Repositories
         {
         }
 
+        public void CreateSubjectTopic(SubjectTopic newSubjectTopic) => Create(newSubjectTopic);
+        public void DeleteOneSubjectTopic(SubjectTopic subjectTopic) => Remove(subjectTopic);
+
         public SubjectTopic? GetOneSubjectTopic(int id, bool trackChanges)
         {
             return FindByCondition(p => p.SUBJECT_TOPIC_ID.Equals(id), trackChanges);

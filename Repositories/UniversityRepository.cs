@@ -14,6 +14,10 @@ namespace Repositories
         {
         }
 
+        public void CreateOneUniversity(University university) => Create(university);
+
+        public void DeleteOneUniversity(University university) => Remove(university);
+
         public University? GetOneUniversity(int id, bool trackChanges)
         {
             return FindByCondition(p => p.UNIVERSITY_ID.Equals(id), trackChanges);

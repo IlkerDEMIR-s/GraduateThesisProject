@@ -12,5 +12,6 @@ namespace Entitites.Models
         [Key] // Add this attribute to specify the primary key
         public int AUTHOR_ID { get; set; }
         public string? AUTHOR_NAME { get; set; }
+        public string? ASPNET_USER_ID { get; set; }
     }
 }

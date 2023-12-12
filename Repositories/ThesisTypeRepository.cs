@@ -18,6 +18,9 @@ namespace Repositories
         {
             return FindByCondition(t => t.TYPE_ID.Equals(id), trackChanges);
         }
+
+        public void DeleteOneThesisType(ThesisType type) => Remove(type);
+        public void CreateOneThesisType(ThesisType type) => Create(type);
     }
 }
 

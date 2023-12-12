@@ -19,5 +19,10 @@ namespace Repositories
         {
             return FindByCondition(p => p.INSTITUTE_ID.Equals(id), trackChanges);
         }
+
+        public void DeleteOneInstitute(Institute institute) => Remove(institute);
+        public void CreateOneInstitute(Institute institute) => Create(institute);
+        public void DeleteInstitutes(Institute institute) => Remove(institute);
+      
     }
 }

@@ -1,0 +1,32 @@
+@model SubjectTopic
+
+<div class="text-center">
+    <div class="display-6 my-3">Create Subject</div>
+    <hr class="my-4" style="border: 2px solid green; border-radius: 5px;">
+</div>
+
+<form method="post" asp-action="Create" enctype="multipart/form-data">
+
+    <div class="text-danger" asp-validation-summary="All"></div>
+    <div class="row">
+            <div class="form-group my-3">
+                <label asp-for="SUBJECT_TOPIC_CONTENT" class="control-label">Subject Name</label>
+                <input asp-for="SUBJECT_TOPIC_CONTENT" class="form-control" />
+            </div>
+    </div>
+
+    <div class="form-group my-3">
+        <div class="btn-group">
+            <button class="btn btn-success" type="submit">
+                <i class="fa fa-save"></i>
+                Save
+            </button>
+            <a asp-action="Index" class="btn btn-outline-success">
+                <i class="fa fa-list"></i>
+                SUBJECTS
+            </a>
+        </div>
+    </div>
+</form>
+
+

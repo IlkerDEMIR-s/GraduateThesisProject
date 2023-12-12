@@ -1,0 +1,41 @@
+@model List<SubjectTopic>
+
+<div class="text-center">
+    <div class="display-6 my-3 font-weight-bold" style="font-family: 'Arial', sans-serif;">Subject Topics</div>
+    <table class="table table-striped table-hover my-3">
+        <hr class="my-4" style="border: 2px solid black; border-radius: 5px;">
+        <div class="text-center">
+            <div class="d-flex justify-content-end my-3">
+                <a class="btn btn-outline-success" asp-action="Create">
+                    <i class="fa fa-plus"></i>
+                    Create
+                </a>
+            </div>
+        </div>
+        <thead>
+            <tr>
+                <th class="font-weight-bold"><i class="fa-solid fa-hashtag"></i>Subject Topic Id</th>
+                <th class="font-weight-bold">Subject Topic Content</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var subjectTopic in Model)
+            {
+                <tr>
+                    <td>@subjectTopic.SUBJECT_TOPIC_ID</td>
+                    <td>@subjectTopic.SUBJECT_TOPIC_CONTENT</td>
+
+                    <td>
+                        <div class="btn-group">
+                            <a class="btn btn-danger" asp-action="Delete"
+                               asp-route-id="@subjectTopic.SUBJECT_TOPIC_ID">
+                                <i class="fa fa-trash"></i> Delete
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+</div>

@@ -1,0 +1,77 @@
+<div class="row">
+    <div class="col-md-3 mx-4">
+        <div class="card bg-primary text-white" style="width: 20rem;">
+            <div class="card-body text-center">
+                <h6 class="card-subtitle mb-2">Number of</h6>
+                <h5 class="card-title">Theses</h5>
+                <h3 class="text-center display-3">
+                    @await Component.InvokeAsync("ThesesSummary")
+                </h3>
+                <a asp-controller="Thesis" asp-action="Index" class="card-link text-white">Theses</a>
+                <a asp-controller="Thesis" asp-action="Create" class="card-link text-white">New Thesis</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3 mx-4">
+        <div class="card bg-info text-white" style="width: 20rem;">
+            <div class="card-body text-center">
+                <h6 class="card-subtitle mb-2">Number of</h6>
+                <h5 class="card-title">Users</h5>
+                <h3 class="text-center display-3">
+                    @await Component.InvokeAsync("UserSummary")
+                </h3>
+                <a asp-controller="User" asp-action="Index" class="card-link text-white">Users</a>
+                <a asp-controller="User" asp-action="Create" class="card-link text-white">New User</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3 mx-4">
+        <div class="card bg-warning text-white" style="width: 20rem;">
+            <div class="card-body text-center">
+                <h6 class="card-subtitle mb-2">Number of</h6>
+                <h5 class="card-title">Universities</h5>
+                <h3 class="text-center display-3">
+                    @await Component.InvokeAsync("UniversitySummary")
+                </h3>
+                <a asp-controller="University" asp-action="Index" class="card-link text-white">Universities</a>
+                <a asp-controller="University" asp-action="Create" class="card-link text-white">New University</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="row my-3">
+
+    <div class="col-md-3 mx-4">
+        <div class="card bg-danger text-white" style="width: 20rem;">
+            <div class="card-body text-center">
+                <h6 class="card-subtitle mb-2">Number of</h6>
+                <h5 class="card-title">Subjects</h5>
+                <h3 class="text-center display-3">
+                    @await Component.InvokeAsync("SubjectSummary")
+                </h3>
+                <a asp-controller="Subject" asp-action="Index" class="card-link text-white">Subjects</a>
+                <a asp-controller="Subject" asp-action="Create" class="card-link text-white">New Subject</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3 mx-4">
+        <div class="card bg-secondary text-white" style="width: 20rem;">
+            <div class="card-body text-center">
+                <h6 class="card-subtitle mb-2">Number of</h6>
+                <h5 class="card-title">Types</h5>
+                <h3 class="text-center display-3">
+                    @await Component.InvokeAsync("TypeSummary")
+                </h3>
+                <a asp-controller="Type" asp-action="Index" class="card-link text-white">Types</a>
+                <a asp-controller="Type" asp-action="Create" class="card-link text-white">New Type</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>

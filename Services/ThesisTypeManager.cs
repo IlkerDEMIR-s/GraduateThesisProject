@@ -13,6 +13,23 @@ namespace Services
         {
             _manager = manager;
         }
+        public void CreateThesisType(ThesisType type)
+        {
+            _manager.ThesisType.Create(type);
+            _manager.Save();
+        }
+
+        public void DeleteOneThesisType(int id)
+        {
+            var type = GetOneThesisType(id, true);
+            if (type is not null)
+            {
+                _manager.ThesisType.DeleteOneThesisType(type);
+                _manager.Save();
+            }
+        }
+
+
         public IEnumerable<ThesisType> GetAllThesisTypes(bool trackChanges)
         {
             return _manager.ThesisType.FindAll(trackChanges);

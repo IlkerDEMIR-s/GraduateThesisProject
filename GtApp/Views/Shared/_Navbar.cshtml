@@ -1,7 +1,7 @@
 <nav class="navbar bg-light border-bottom navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
         <a class="navbar-brand" asp-controller="Home" asp-action="Index">
-            <i class="fa-solid fa-book-open text-danger"></i>
+            <i class="fa-solid fa-book-open text-danger fa-lg"></i>
             <span class="text-danger">Graduate Thesis Center</span></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -20,14 +20,15 @@
                         Theses (@await Component.InvokeAsync("ThesesSummary"))
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" asp-controller="Manage" asp-action="Index">
+                        <i class="fa-solid fa-list-check"></i>
+                        Manage Theses
+                    </a>
+                </li>
             </ul>
             <ul class="navbar-nav">
-                    <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" asp-area="admin" asp-controller="Dashboard"
-                     asp-action="Index">
-                        <i class="fa-solid fa-gauge-high"></i>
-                        Admin</a>
-                </li>
+                <partial name="_LoginMenu" />
             </ul>
         </div>
     </div>

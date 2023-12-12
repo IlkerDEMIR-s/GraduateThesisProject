@@ -12,8 +12,8 @@ using Repositories;
 namespace GtApp.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    [Migration("20231205212607_startIdentity")]
-    partial class startIdentity
+    [Migration("20231209155650_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -25,6 +25,7 @@ namespace GtApp.Migrations
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
  
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -54,15 +55,22 @@ namespace GtApp.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "a4b3a556-86e4-4908-bb5c-a5b4c9d95fd9",
-                            ConcurrencyStamp = "9923a86e-65ae-4093-9bbb-37a057dbafb2",
+                            Id = "0211581f-b23f-44e2-b175-8ceef7e60893",
+                            ConcurrencyStamp = "3822655d-63a3-4094-a7ff-3ce4afa0f913",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "43574210-98dc-430c-8813-f7f6be10acb0",
-                            ConcurrencyStamp = "79ccc8d2-6de7-40e5-841b-ff646d2d9be2",
+                            Id = "b34e6f58-53a8-4d41-a8d6-cb89977c3225",
+                            ConcurrencyStamp = "4b1d9d3e-b7be-4220-8dd0-1c75c1b950f5",
+                            Name = "Editor",
+                            NormalizedName = "EDITOR"
+                        },
+                        new
+                        {
+                            Id = "42c1d73e-efbe-43e9-9e2b-a4cbca203512",
+                            ConcurrencyStamp = "572d6422-3ba5-444b-b404-83544d867864",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });

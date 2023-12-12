@@ -9,6 +9,8 @@ namespace Services.Contracts
 {
     public interface IThesisTypeService
     {
+        void CreateThesisType(ThesisType type);
+        void DeleteOneThesisType(int id);
         IEnumerable<ThesisType> GetAllThesisTypes(bool trackChanges);
         ThesisType? GetOneThesisType(int id, bool trackChanges);
     }

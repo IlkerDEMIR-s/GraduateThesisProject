@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace GtApp.Migrations
 {
-    public partial class startIdentity : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -47,6 +47,8 @@ namespace GtApp.Migrations
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
                 });
+
+
 
             migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
@@ -157,12 +159,17 @@ namespace GtApp.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "43574210-98dc-430c-8813-f7f6be10acb0", "79ccc8d2-6de7-40e5-841b-ff646d2d9be2", "Admin", "ADMIN" });
+                values: new object[] { "0211581f-b23f-44e2-b175-8ceef7e60893", "3822655d-63a3-4094-a7ff-3ce4afa0f913", "User", "USER" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "a4b3a556-86e4-4908-bb5c-a5b4c9d95fd9", "9923a86e-65ae-4093-9bbb-37a057dbafb2", "User", "USER" });
+                values: new object[] { "42c1d73e-efbe-43e9-9e2b-a4cbca203512", "572d6422-3ba5-444b-b404-83544d867864", "Admin", "ADMIN" });
+
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[] { "b34e6f58-53a8-4d41-a8d6-cb89977c3225", "4b1d9d3e-b7be-4220-8dd0-1c75c1b950f5", "Editor", "EDITOR" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

@@ -18,6 +18,22 @@ namespace Services
             _manager = manager;
         }
 
+        public void CreateUniversity(University newUniversity)
+        {
+            _manager.University.Create(newUniversity);  
+            _manager.Save();
+        }
+
+        public void DeleteUniversity(int id)
+        {
+            var university = GetOneUniversity(id, true);
+            if (university is not null)
+            {
+                _manager.University.DeleteOneUniversity(university);
+                _manager.Save();
+            }
+        }
+
         public IEnumerable<University> GetAllUniversities(bool trackChanges)
         {
             return _manager.University.FindAll(trackChanges);

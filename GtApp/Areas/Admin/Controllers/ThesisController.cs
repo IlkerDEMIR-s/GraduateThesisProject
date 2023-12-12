@@ -1,13 +1,14 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Services.Contracts;
 using Entitites.ViewModels;
 using Entitites.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Services.Contracts;
 
 namespace GtApp.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles ="Admin")]
     public class ThesisController : Controller
     {
         private readonly IServiceManager _manager;
@@ -16,7 +17,6 @@ namespace GtApp.Areas.Admin.Controllers
         {
             _manager = manager;
         }
-
         public IActionResult Index()
         {
             ViewData["Title"] = "Theses";
@@ -59,11 +59,13 @@ namespace GtApp.Areas.Admin.Controllers
             ViewBag.Authors = new SelectList(_manager.AuthorService.GetAllAuthors(false), "AUTHOR_ID", "AUTHOR_NAME");
             ViewBag.SubjectTopics = new SelectList(_manager.SubjectTopicService.GetAllSubjectTopics(false), "SUBJECT_TOPIC_ID", "SUBJECT_TOPIC_CONTENT");
             ViewBag.ThesisTypes = new SelectList(_manager.ThesisTypeService.GetAllThesisTypes(false), "TYPE_ID", "TYPE_NAME");
+            ViewBag.AllInstitutes = new SelectList(_manager.InstituteService.GetAllInstitutes(false), "INSTITUTE_ID", "INSTITUTE_NAME");
         }
 
         public IActionResult Create()
         {
             ViewData["Title"] = "Create";
+            TempData["info"] = "Please fill the form.";
 
             LoadViewBags();
 
@@ -140,7 +142,7 @@ namespace GtApp.Areas.Admin.Controllers
                     }
                 }
 
-
+                TempData["Success"] = $"Thesis {thesis.THESIS_NO} created successfully.";
                 return RedirectToAction("Index");
             }       
                 // Manually add a model error for SupervisorName
@@ -149,7 +151,7 @@ namespace GtApp.Areas.Admin.Controllers
             ModelState.AddModelError(nameof(viewModel.ThesisYear), "Thesis year is required.");
             var errors = ModelState.Values.SelectMany(v => v.Errors);
             LoadViewBags();
-             return View(viewModel);
+            return View(viewModel);
 
         }
 
@@ -180,7 +182,6 @@ namespace GtApp.Areas.Admin.Controllers
                 CoSupervisor = coSupervisor
             };
 
-
             return View(model);
         }
 
@@ -192,26 +193,7 @@ namespace GtApp.Areas.Admin.Controllers
             {
                _manager.ThesisService.UpdateOneThesis(viewModel.Thesis);
 
-               if (viewModel.CoSupervisor.SUPERVISOR_NAME != null)
-               {
-                   _manager.SupervisorService.CreateSupervisor(viewModel.CoSupervisor);
-               }
-
-               if(viewModel.CoSupervisor.SUPERVISOR_ID == 0)
-                {
-                       viewModel.CoSupervisor = null;
-                }
-
-                var ThesisSupervision = new ThesisSupervision
-                {
-                    THESIS_NO = viewModel.Thesis.THESIS_NO,
-                    SUPERVISOR_ID = viewModel.Supervisor.SUPERVISOR_ID,                    
-                    CO_SUPERVISOR_ID = viewModel.CoSupervisor?.SUPERVISOR_ID
-               };
-
-
-               _manager.ThesisSupervisionService.UpdateOneThesisSupervision(ThesisSupervision);
-
+               TempData["Success"] = $"Thesis {viewModel.Thesis.THESIS_NO} updated successfully.";  
                return RedirectToAction("Index");
             }
 
@@ -229,6 +211,7 @@ namespace GtApp.Areas.Admin.Controllers
             _manager.ThesisSubjectTopicService.DeleteThesisSubjectTopicsByThesisId(id);
             _manager.ThesisService.DeleteOneThesis(id);
 
+            TempData["Danger"] = $"Thesis {id} has been removed.";
             return RedirectToAction("Index");
         }
 
