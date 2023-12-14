@@ -1,4 +1,4 @@
-# A simple, cross platform, graduate thesis system built on .NET Core 
+# A cross platform, graduate thesis system built on .NET Core 
 
 ## Visual Studio and SQL Server
 
