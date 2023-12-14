@@ -12,6 +12,8 @@
 - ASP.NET MVC Core 6.0
 - Entity Framework Core 6.0
 - ASP.NET Identity Core 6.0
+- AutoMapper 12.0.1
+- Entity Framework Core SqlServer 6.0
 
 #### Steps to run
 
