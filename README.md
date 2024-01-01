@@ -14,6 +14,7 @@
 - ASP.NET Identity Core 6.0
 - AutoMapper 12.0.1
 - Entity Framework Core SqlServer 6.0
+- Bootstrap
 
 #### Steps to run
 
