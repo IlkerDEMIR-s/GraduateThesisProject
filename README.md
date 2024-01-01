@@ -23,18 +23,56 @@
 ## Login Details
 
 #### Admin
-Username: admin
+Username: Admin
 
-Password: admin+123456
+Password: Admin+123456
 
 
-## Screenshots
+## Database Schema Diagram
+
+!["Database Schema Diagram"](https://github.com/IlkerDEMIR-s/GraduateThesisProject/blob/master/GtApp/wwwroot/images/db.png)
+!["Database Schema Diagram2"](https://github.com/IlkerDEMIR-s/GraduateThesisProject/blob/master/GtApp/wwwroot/images/db2.png)
+
+## Some screenshots from the project
 
 #### Home Page
+!["Home Page"](https://github.com/IlkerDEMIR-s/GraduateThesisProject/blob/master/GtApp/wwwroot/images/si1.png)
+
+#### Page where all theses are displayed
+!["Page where all theses are displayed"](https://github.com/IlkerDEMIR-s/GraduateThesisProject/blob/master/GtApp/wwwroot/images/si2.png)
+
+#### Thesis detail page
+!["Thesis detail page"](https://github.com/IlkerDEMIR-s/GraduateThesisProject/blob/master/GtApp/wwwroot/images/si3.png)
+
+#### Login Page for managing theses
+!["Login Page for managing theses"](https://github.com/IlkerDEMIR-s/GraduateThesisProject/blob/master/GtApp/wwwroot/images/si4.png)
+
+#### Thesis management page for the user
+!["Thesis management page for the user"](https://github.com/IlkerDEMIR-s/GraduateThesisProject/blob/master/GtApp/wwwroot/images/si5.png)
+
+#### Thesis adding page for the user
+!["Thesis adding page for the user"](https://github.com/IlkerDEMIR-s/GraduateThesisProject/blob/master/GtApp/wwwroot/images/si6.png)
+
+#### Dashboard for Admin side
+!["Dashboard for Admin side"](https://github.com/IlkerDEMIR-s/GraduateThesisProject/blob/master/GtApp/wwwroot/images/si7.png)
+
+#### Thesis management page for admin
+!["Thesis management page for admin"](https://github.com/IlkerDEMIR-s/GraduateThesisProject/blob/master/GtApp/wwwroot/images/si8.png)
+
+#### University management page for admin
+!["University management page for admin"](https://github.com/IlkerDEMIR-s/GraduateThesisProject/blob/master/GtApp/wwwroot/images/si9.png)
+
+#### University adding page for admin
+!["University adding page for admin"](https://github.com/IlkerDEMIR-s/GraduateThesisProject/blob/master/GtApp/wwwroot/images/si10.png)
 
 ## License
 
 This project is licensed under the MIT License
+
+
+
+
+
 
 
 
